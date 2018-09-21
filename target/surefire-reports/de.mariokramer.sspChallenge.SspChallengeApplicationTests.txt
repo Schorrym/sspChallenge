@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: de.mariokramer.sspChallenge.SspChallengeApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.72 s - in de.mariokramer.sspChallenge.SspChallengeApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.114 s - in de.mariokramer.sspChallenge.SspChallengeApplicationTests
