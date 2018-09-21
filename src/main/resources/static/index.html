@@ -6,9 +6,15 @@
 </head>
 <body>
     <div>Wähle deine Figur</div>
-    <button>Schere</button>
-    <button>Stein</button>
-    <button>Papier</button>
+    <a href="/newGame/schere">
+        <button>Schere</button>
+    </a>
+    <a href="/newGame/stein">
+        <button>Stein</button>
+    </a>
+    <a href="/newGame/papier">
+        <button>Papier</button>
+    </a>
     <p th:text="'Das Spielergebnis lautet: , ' + ${ergebnis} + ' !'" />
 </body>
 </html>
