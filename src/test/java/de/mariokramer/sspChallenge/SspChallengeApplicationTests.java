@@ -15,31 +15,22 @@ import java.util.Random;
 public class SspChallengeApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public void testErgebnisNotNullDurchlauf() {
 		SspModel neueRunde =  new SspModel(ObjektTyp.Schere);
 		String ergebnis = neueRunde.getErgebnis().name();
 
-		System.out.println(ergebnis);
 		Assert.assertNotNull(ergebnis);
 	}
 
 	@Test
-	public  void testRandom() {
-		System.out.println(getRandomNumberInRange(1,3));
-		System.out.println(getRandomNumberInRange(1,3));
-		System.out.println(getRandomNumberInRange(1,3));
-		System.out.println(getRandomNumberInRange(1,3));
-		System.out.println(getRandomNumberInRange(1,3));
-		System.out.println(getRandomNumberInRange(1,3));
-		System.out.println(getRandomNumberInRange(1,3));
+	public void testObjektTypIndex() {
+		ObjektTyp schere = ObjektTyp.Schere;
+		ObjektTyp stein = ObjektTyp.Stein;
+		ObjektTyp papier = ObjektTyp.Papier;
 
-	}
-
-	private static int getRandomNumberInRange(int min, int max) {
-
-		Random r = new Random();
-		return r.ints(min, (max + 1)).limit(1).findFirst().getAsInt();
-
+		Assert.assertTrue(schere.getObjektCode() == 1);
+		Assert.assertTrue(stein.getObjektCode() == 2);
+		Assert.assertTrue(papier.getObjektCode() == 3);
 	}
 
 }

@@ -1,5 +1,8 @@
 package de.mariokramer.model;
 
+/**
+ * Repräsentiert die drei möglichen Objekte
+ */
 public enum ObjektTyp {
     Schere(1),
     Stein(2),
