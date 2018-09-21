@@ -1,4 +1,4 @@
-package de.mariokramer.model;
+package de.mariokramer.sspChallenge.model;
 
 /**
  * Repräsentiert die drei möglichen Spielausgänge

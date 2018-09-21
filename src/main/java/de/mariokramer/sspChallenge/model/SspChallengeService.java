@@ -1,10 +1,16 @@
-package de.mariokramer.model;
+package de.mariokramer.sspChallenge.model;
 
 import de.mariokramer.sspChallenge.NoSuchObjectException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-public class SspChallengeCore {
+@Service
+public class SspChallengeService {
+
+    private static final Log LOG = LogFactory.getLog(SspChallengeService.class);
 
     /**
      * Ermittelt das Spielergebnis anhand der eingehenden Paramtern
@@ -12,7 +18,8 @@ public class SspChallengeCore {
      * @param objektTypComputer
      * @return
      */
-    public static SpielErgebnis ermittleErgebnis(ObjektTyp objektTypSpieler, ObjektTyp objektTypComputer) {
+    public SpielErgebnis ermittleErgebnis(ObjektTyp objektTypSpieler, ObjektTyp objektTypComputer) {
+        LOG.debug("ermittleErgebnis() -- Start");
         if(objektTypSpieler.equals(objektTypComputer)){
             return SpielErgebnis.unentschieden;
         }else {
@@ -41,19 +48,12 @@ public class SspChallengeCore {
      * Generiert einen Zufälligen Objektyp der Menge{Schere, Stein, Papier}
      * @return
      */
-    public static ObjektTyp erzeugeObjektTypComputer() {
+    public ObjektTyp erzeugeObjektTypComputer() {
         Random r = new Random();
         int computerObjektCode = r.ints(1, (3 + 1)).limit(1).findFirst().getAsInt();
+        LOG.debug("erzeugeObjektTypComputer() -- erzeugtes Integer: " + computerObjektCode);
 
-        switch (computerObjektCode) {
-            case 1:
-                return ObjektTyp.Schere;
-            case 2:
-                return ObjektTyp.Stein;
-            case 3:
-                return ObjektTyp.Papier;
-        }
-        throw new NoSuchObjectException();
+        return ObjektTyp.values()[computerObjektCode-1];
     }
 
 
