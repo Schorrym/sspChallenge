@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * Hält die zu einem Spiel gehörenden Objekte
  */
 @Component
-public class SspChallengeModel {
+public class SspChallengeModelComponent {
 
     private ObjektTyp objektTypSpieler;
     private ObjektTyp objektTypComputer;

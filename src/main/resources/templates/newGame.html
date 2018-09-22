@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Schere, Stein, Papier</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <div>Wähle deine Figur</div>
+    <a href="/newGame/schere">
+        <button>Schere</button>
+    </a>
+    <a href="/newGame/stein">
+        <button>Stein</button>
+    </a>
+    <a href="/newGame/papier">
+        <button>Papier</button>
+    </a>
+    <p th:text="'Deine Auswahl: ' + ${spielerAuswahl}"/>
+    <p th:text="'Computer Auswahl: ' + ${computerAuswahl}"/>
+    <p th:text="'Der Spielausgang ist: ' + ${spielErgebnis} + ' !'"/>
+</body>
+</html>
