@@ -2,6 +2,8 @@ package de.mariokramer.sspChallenge;
 
 import de.mariokramer.sspChallenge.model.ObjektTyp;
 import de.mariokramer.sspChallenge.model.SspChallengeModelComponent;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Haupt-Controller für die View 'newGame'
@@ -18,11 +21,14 @@ import java.util.Map;
 @Controller
 public class SspChallengeController {
 
+    private static final Log LOG = LogFactory.getLog(SspChallengeController.class);
+    private final AtomicLong counter = new AtomicLong();
+
     @Autowired
     SspChallengeModelComponent sspChallengeModelComponent;
 
     @GetMapping("/newGame")
-    public String greeting(final Model model) {
+    public String newGame() {
         return "newGame";
     }
 
@@ -70,11 +76,13 @@ public class SspChallengeController {
      * @return
      */
     private Map<String, String> getSpielInfoMap(){
+        counter.incrementAndGet();
         Map<String, String> spielInfoMap = new HashMap<>();
         spielInfoMap.put("spielerAuswahl", this.sspChallengeModelComponent.getObjektTypSpieler().name());
         spielInfoMap.put("computerAuswahl", this.sspChallengeModelComponent.getObjektTypComputer().name());
         spielInfoMap.put("spielErgebnis", this.sspChallengeModelComponent.getErgebnis().name());
 
+        LOG.debug("Spieldurchgang Nr.: " + counter + " " + spielInfoMap);
         return spielInfoMap;
     }
 

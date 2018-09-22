@@ -20,22 +20,23 @@ public class SspChallengeService {
      */
     public SpielErgebnis ermittleErgebnis(ObjektTyp objektTypSpieler, ObjektTyp objektTypComputer) {
         LOG.debug("ermittleErgebnis() -- Start");
+
         if(objektTypSpieler.equals(objektTypComputer)){
             return SpielErgebnis.unentschieden;
         }else {
-            switch (objektTypSpieler.getObjektCode()) {
-                case 1:
-                    if (objektTypComputer.getObjektCode() == 2) {
+            switch (objektTypSpieler.name()) {
+                case "Schere":
+                    if (objektTypComputer.equals(ObjektTyp.Stein)) {
                         return SpielErgebnis.verloren;
                     }
                     return SpielErgebnis.gewonnen;
-                case 2:
-                    if (objektTypComputer.getObjektCode() == 1) {
+                case "Stein":
+                    if (objektTypComputer.equals(ObjektTyp.Schere)) {
                         return SpielErgebnis.gewonnen;
                     }
                     return SpielErgebnis.verloren;
-                case 3:
-                    if (objektTypComputer.getObjektCode() == 2) {
+                case "Papier":
+                    if (objektTypComputer.equals(ObjektTyp.Stein)) {
                         return SpielErgebnis.gewonnen;
                     }
                     return SpielErgebnis.verloren;

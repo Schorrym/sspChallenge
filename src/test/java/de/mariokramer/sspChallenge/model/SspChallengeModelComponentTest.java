@@ -1,9 +1,5 @@
 package de.mariokramer.sspChallenge.model;
 
-import de.mariokramer.sspChallenge.model.ObjektTyp;
-import de.mariokramer.sspChallenge.model.SpielErgebnis;
-import de.mariokramer.sspChallenge.model.SspChallengeModelComponent;
-import de.mariokramer.sspChallenge.model.SspChallengeService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SspChallengeModelComponentTests {
+public class SspChallengeModelComponentTest {
 
 	@MockBean
 	SspChallengeService sspChallengeService;
@@ -34,9 +30,13 @@ public class SspChallengeModelComponentTests {
 		Mockito.doReturn(ObjektTyp.Stein).when(sspChallengeService).erzeugeObjektTypComputer();
 		Mockito.doReturn(SpielErgebnis.gewonnen).when(sspChallengeService).ermittleErgebnis(Mockito.any(),Mockito.any());
 		this.sspChallengeModelComponent.startGame(ObjektTyp.Schere);
-		String ergebnis = this.sspChallengeModelComponent.getErgebnis().name();
+		SpielErgebnis ergebnis = this.sspChallengeModelComponent.getErgebnis();
+		ObjektTyp objektSpieler = this.sspChallengeModelComponent.getObjektTypSpieler();
+		ObjektTyp objektComputer = this.sspChallengeModelComponent.getObjektTypComputer();
 
 		Assert.assertNotNull(ergebnis);
+		Assert.assertNotNull(objektSpieler);
+		Assert.assertNotNull(objektComputer);
 	}
 
 	@Test
