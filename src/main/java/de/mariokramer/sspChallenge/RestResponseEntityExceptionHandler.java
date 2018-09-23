@@ -11,11 +11,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value
-            = { IllegalArgumentException.class, IllegalStateException.class, NoSuchObjectException.class })
-    protected ResponseEntity<Object> handleConflict(
-            RuntimeException ex, WebRequest request) {
-        String responseBody = "Hier ist etwas schief gelaufen";
+    @ExceptionHandler(NoSuchObjectException.class)
+    public final ResponseEntity<Object> handleNoSuchObjectException(NoSuchObjectException ex, WebRequest request) {
+        String responseBody = "NoSuchObjectException - " + ex.getMessage();
         return handleExceptionInternal(ex, responseBody,
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }

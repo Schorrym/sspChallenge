@@ -72,6 +72,19 @@ public class SspChallengeController {
     }
 
     /**
+     * Startet ein neues Spiel mit dem Gegenstand 'Brunnen'
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "newGame/brunnen", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String spielMitBrunnen(final Model model) {
+        sspChallengeModelComponent.startGame(ObjektTyp.Brunnen);
+        model.addAllAttributes(getSpielInfoMap());
+
+        return "newGame";
+    }
+
+    /**
      * Ermittelt alle Informationen aus einem Spiel und schreibt diese in einer Map zusammen
      * @return
      */

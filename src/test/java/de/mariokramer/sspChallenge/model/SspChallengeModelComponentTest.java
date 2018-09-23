@@ -44,10 +44,12 @@ public class SspChallengeModelComponentTest {
 		ObjektTyp schere = ObjektTyp.Schere;
 		ObjektTyp stein = ObjektTyp.Stein;
 		ObjektTyp papier = ObjektTyp.Papier;
+		ObjektTyp brunnen = ObjektTyp.Brunnen;
 
 		Assert.assertTrue(schere.getObjektCode() == 1);
 		Assert.assertTrue(stein.getObjektCode() == 2);
 		Assert.assertTrue(papier.getObjektCode() == 3);
+		Assert.assertTrue(brunnen.getObjektCode() == 4);
 	}
 
 }

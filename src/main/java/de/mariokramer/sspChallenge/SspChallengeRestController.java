@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,38 +24,19 @@ public class SspChallengeRestController {
     SspChallengeModelComponent sspChallengeModelComponent;
 
     /**
-     * Startet ein neues Spiel mit dem Gegenstand 'Schere'
+     * Startet ein neues Spiel mit dem Gegenstand gegeben durch den Parameter
      * @return
      */
-    @GetMapping(value = "/schere", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public SspChallengeModelComponent spielMitSchere() {
-        sspChallengeModelComponent.startGame(ObjektTyp.Schere);
+    @GetMapping(value = "/spielMit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public SspChallengeModelComponent spielMit(@RequestParam String objektName) {
+        try{
+            ObjektTyp objektTyp = ObjektTyp.sucheObjektTyp(objektName);
+            sspChallengeModelComponent.startGame(objektTyp);
 
-        LOG.debug(this.sspChallengeModelComponent.getErgebnis());
-        return this.sspChallengeModelComponent;
-    }
-
-    /**
-     * Startet ein neues Spiel mit dem Gegenstand 'Stein'
-     * @return
-     */
-    @GetMapping(value = "/stein", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public SspChallengeModelComponent spielMitStein() {
-        sspChallengeModelComponent.startGame(ObjektTyp.Stein);
-
-        LOG.debug(this.sspChallengeModelComponent.getErgebnis());
-        return this.sspChallengeModelComponent;
-    }
-
-    /**
-     * Startet ein neues Spiel mit dem Gegenstand 'Papier'
-     * @return
-     */
-    @GetMapping(value = "/papier", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public SspChallengeModelComponent spielMitPapier() {
-        sspChallengeModelComponent.startGame(ObjektTyp.Papier);
-
-        LOG.debug(this.sspChallengeModelComponent.getErgebnis());
-        return this.sspChallengeModelComponent;
+            LOG.debug(this.sspChallengeModelComponent.getErgebnis());
+            return this.sspChallengeModelComponent;
+        }catch (NoSuchObjectException ex) {
+            throw ex;
+        }
     }
 }

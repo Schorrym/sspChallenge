@@ -26,32 +26,37 @@ public class SspChallengeService {
         }else {
             switch (objektTypSpieler.name()) {
                 case "Schere":
-                    if (objektTypComputer.equals(ObjektTyp.Stein)) {
-                        return SpielErgebnis.verloren;
+                    if (objektTypComputer.equals(ObjektTyp.Papier)) {
+                        return SpielErgebnis.gewonnen;
                     }
-                    return SpielErgebnis.gewonnen;
+                    return SpielErgebnis.verloren;
                 case "Stein":
                     if (objektTypComputer.equals(ObjektTyp.Schere)) {
                         return SpielErgebnis.gewonnen;
                     }
                     return SpielErgebnis.verloren;
                 case "Papier":
-                    if (objektTypComputer.equals(ObjektTyp.Stein)) {
-                        return SpielErgebnis.gewonnen;
+                    if (objektTypComputer.equals(ObjektTyp.Schere)) {
+                        return SpielErgebnis.verloren;
                     }
-                    return SpielErgebnis.verloren;
+                    return SpielErgebnis.gewonnen;
+                case "Brunnen":
+                    if (objektTypComputer.equals(ObjektTyp.Papier)){
+                        return SpielErgebnis.verloren;
+                    }
+                    return SpielErgebnis.gewonnen;
             }
         }
         throw new NoSuchObjectException();
     }
 
     /**
-     * Generiert einen Zufälligen Objektyp der Menge{Schere, Stein, Papier}
+     * Generiert einen Zufälligen Objektyp der Menge{Schere, Stein, Papier, Brunnen}
      * @return
      */
     public ObjektTyp erzeugeObjektTypComputer() {
         Random r = new Random();
-        int computerObjektCode = r.ints(1, (3 + 1)).limit(1).findFirst().getAsInt();
+        int computerObjektCode = r.ints(1, (4 + 1)).limit(1).findFirst().getAsInt();
         LOG.debug("erzeugeObjektTypComputer() -- erzeugtes Integer: " + computerObjektCode);
 
         return ObjektTyp.values()[computerObjektCode-1];

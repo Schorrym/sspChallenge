@@ -36,16 +36,28 @@ public class SspChallengeRestControllerTest {
     }
 
     @Test
+    public void noSuchObjectExceptionTest() throws Exception {
+        mockMvc.perform(get("/spielMit").param("objektName", "FakeObjekt").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().is4xxClientError())
+                .andExpect(content().string("NoSuchObjectException - Kein Objekt namens 'FakeObjekt' gefunden"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+    }
+
+    @Test
     public void spielMitGegenstandTest() throws Exception {
-        mockMvc.perform(get("/stein").accept(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(get("/spielMit").param("objektName", "Schere").accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
-        mockMvc.perform(get("/schere").accept(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(get("/spielMit").param("objektName", "Stein").accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
-        mockMvc.perform(get("/papier").accept(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(get("/spielMit").param("objektName", "Papier").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+
+        mockMvc.perform(get("/spielMit").param("objektName", "Brunnen").accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
     }

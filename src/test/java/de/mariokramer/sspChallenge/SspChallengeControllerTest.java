@@ -61,5 +61,9 @@ public class SspChallengeControllerTest {
         mockMvc.perform(get("/newGame/papier").accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newGame"));
+
+        mockMvc.perform(get("/newGame/brunnen").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(view().name("newGame"));
     }
 }

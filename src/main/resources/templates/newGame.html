@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Schere, Stein, Papier</title>
+    <title>Schere, Stein, Papier und Brunnen</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -14,6 +14,9 @@
     </a>
     <a href="/newGame/papier">
         <button>Papier</button>
+    </a>
+    <a href="/newGame/brunnen">
+        <button>Brunnen</button>
     </a>
     <p th:text="'Deine Auswahl: ' + ${spielerAuswahl}"/>
     <p th:text="'Computer Auswahl: ' + ${computerAuswahl}"/>
